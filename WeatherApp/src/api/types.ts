@@ -6,7 +6,7 @@ export interface Coordiantes {
 export interface WeatherCondition {
   id: number;
   main: string;
-  descriptio: string;
+  description: string;
   icon: string;
 }
 export interface WeatherData {
@@ -24,4 +24,29 @@ export interface WeatherData {
     speed: number;
     deg: number;
   };
+}
+
+export interface ForecastData {
+  list: Array<{
+    dt: number;
+    main: WeatherData["main"];
+    weather: WeatherData["weather"];
+    wind: WeatherData["wind"];
+    dt_txt: string;
+  }>;
+  city: {
+    name: string;
+    country: string;
+    sunrise: number;
+    sunset: number;
+  };
+}
+
+export interface GeoCodeType{
+    name:string
+    local_names?: Record<string,string>
+    lat:number,
+    lon:number,
+    country:string,
+    state?:string
 }

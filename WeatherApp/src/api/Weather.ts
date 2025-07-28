@@ -1,11 +1,18 @@
 import { API_CONFIG } from "./config";
-import type { Coordiantes } from './types';
+import type {
+  Coordiantes,
+  ForecastData,
+  GeoCodeType,
+  WeatherData,
+} from "./types";
 
 class WeatherConfig {
-  private createUrl(endpoint: string, params: Record<string, string | number>) {
+  private createUrl(endpoint: string, params : Record<string, string | number>) {
     const searchParams = new URLSearchParams({
-      apppid: API_CONFIG.API_KEY,
       ...params,
+      APPID: API_CONFIG.API_KEY,
+     
+      
     });
     return `${endpoint}?${searchParams.toString()}`;
   }
@@ -19,14 +26,29 @@ class WeatherConfig {
     return response.json();
   }
 
-  get_current_weather({lat,lon}:Coordiantes) {
-    const url = this.createUrl(`${API_CONFIG.OPEN_WEATHER_URL}/weather`,{
-        lat:lat.toString(),
-        lon:lon.toString(),
-        units:API_CONFIG.DEFAULT_PARAMS.units,
-    })
-    return this.fetchData
+  async get_current_weather({ lat, lon }: Coordiantes): Promise<WeatherData> {
+    const url = this.createUrl(`${API_CONFIG.OPEN_WEATHER_URL}/weather`, {
+      lat: lat.toString(),
+      lon: lon.toString(),
+      units: API_CONFIG.DEFAULT_PARAMS.units,
+    });
+    return this.fetchData<WeatherData>(url);
   }
-  get_forecast() {}
-  async reverse_geocode() {}
+  async get_forecast({ lat, lon }: Coordiantes): Promise<ForecastData> {
+    const url = this.createUrl(`${API_CONFIG.OPEN_WEATHER_URL}/forecast`, {
+      lat: lat.toString(),
+      lon: lon.toString(),
+      units: API_CONFIG.DEFAULT_PARAMS.units,
+    });
+    return this.fetchData<ForecastData>(url);
+  }
+  async reverseGeoCode({ lat, lon }: Coordiantes): Promise<GeoCodeType[]> {
+    const url = this.createUrl(`${API_CONFIG.GEOCODE_URL}/reverse`, {
+      lat: lat.toString(),
+      lon: lon.toString(),
+    });
+    return this.fetchData<GeoCodeType[]>(url);
+  }
 }
+
+export const weatherAPI = new WeatherConfig();
