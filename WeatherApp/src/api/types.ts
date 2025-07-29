@@ -20,11 +20,20 @@ export interface WeatherData {
     pressure: number;
     humidity: number;
   };
-  wind: {
+    wind: {
     speed: number;
     deg: number;
   };
+  sys: {
+    sunrise: number;
+    sunset: number;
+    country: string;
+  };
+  name: string;
+  dt: number;
 }
+
+
 
 export interface ForecastData {
   list: Array<{
