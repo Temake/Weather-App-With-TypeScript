@@ -43,10 +43,10 @@ export function WeatherForecast({ data }: WeatherForecastProps) {
     return acc;
   }, {} as Record<string, DailyForecast>);
 
-  // Get next 5 days
+
   const nextDays = Object.values(dailyForecasts).slice(1, 6);
 
-  // Format temperature
+
   const formatTemp = (temp: number) => `${Math.round(temp)}°`;
 
   return (

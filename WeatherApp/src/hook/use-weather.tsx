@@ -36,10 +36,10 @@ export function useReverseGeocodeQuery(coordinates: Coordiantes | null) {
   });
 }
 
-// export function useLocationSearch(query: string) {
-//   return useQuery({
-//     queryKey: WEATHER_KEYS.search(query),
-//     queryFn: () => weatherAPI.reverseGeoCode(34),
-//     enabled: query.length >= 3,
-//   });
-// }
+export function useLocationSearch(query: string) {
+  return useQuery({
+    queryKey: WEATHER_KEYS.search(query),
+    queryFn: () => weatherAPI.searchLocation(query),
+    enabled: query.length >= 3,
+  });
+}

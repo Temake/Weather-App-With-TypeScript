@@ -2,6 +2,7 @@
 import { useTheme } from "@/context/ThemeContextProvide";
 import { Moon, Sun } from "lucide-react";
 import { Link } from "react-router-dom";
+import { CitySearch } from "./citySearch";
 
 
 const Header = () => { 
@@ -13,6 +14,7 @@ const Header = () => {
         <Link to={"/"}>
           <img src={isDark ? "/download.webg": "/download.webg"} alt={theme === "dark" ? "First Image ": "Second Image" } className="h-14" />
         </Link>
+        <div> <CitySearch></CitySearch></div>
         <div onClick={() =>  setTheme( isDark ? "light": "dark")} className={`flex items-center cursor-pointer transition-transform duration-500 ${isDark ? "rotate-180": "rotate-0"} `}>
           {isDark ? <Sun className=" h-6 w-6 text-yellow-500 rotate-0 transition-all "/> :<Moon className="h-6 w-6 text-blue-500 rotate-0 transition-all"/> }
 

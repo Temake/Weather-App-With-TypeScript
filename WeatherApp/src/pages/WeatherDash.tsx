@@ -12,6 +12,8 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 import {CurrentWeather} from "@/components/CurrentWeather";
 import { HourlyTemperature } from "@/components/hourlyTemperature";
+import { WeatherDetails } from "@/components/weatherDetails";
+import { WeatherForecast } from "@/components/weatherForecast";
 
 const WeatherDashboard = () => {
   const { coordinates, error, isLoading, getLocation } = useGeolocation();
@@ -108,8 +110,8 @@ const WeatherDashboard = () => {
           <HourlyTemperature data={forecastQuery.data} />
         </div>
       <div>
-       {/* details
-       forecar */}
+       <WeatherDetails data={weatherQuery.data}/>
+       <WeatherForecast data={forecastQuery.data}/>
       </div>
     </div>
     </div>
