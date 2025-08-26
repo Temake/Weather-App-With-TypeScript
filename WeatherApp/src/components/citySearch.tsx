@@ -21,6 +21,7 @@ export function CitySearch() {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
+  //https://weather-app-with-type-script.vercel.app/
 
   const { data: locations, isLoading } = useLocationSearch(query);
   const { favorites } = useFavorites();

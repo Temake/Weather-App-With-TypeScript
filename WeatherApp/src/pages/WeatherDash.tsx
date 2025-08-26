@@ -102,11 +102,10 @@ const WeatherDashboard = () => {
       </Button>
     </div>
     <div className=" grid gap-6">
-       <div>
+       <div className="grid grid-cols-2 gap-2">
         <CurrentWeather data={weatherQuery.data}
         locationName={locationName}/>
-          {/* current weatherAPI
-          houlru temp */}
+       
           <HourlyTemperature data={forecastQuery.data} />
         </div>
       <div>
