@@ -10,7 +10,7 @@ import {
 } from "@/hook/use-weather";
 import { Skeleton } from "@/components/ui/skeleton";
 
-import {CurrentWeather} from "@/components/CurrentWeather";
+import { CurrentWeather } from "@/components/CurrentWeather";
 import { HourlyTemperature } from "@/components/hourlyTemperature";
 import { WeatherDetails } from "@/components/weatherDetails";
 import { WeatherForecast } from "@/components/weatherForecast";
@@ -88,34 +88,37 @@ const WeatherDashboard = () => {
 
   return (
     <div className="space-y-4">
-    <div className="flex items-center justify-between">
-      <h1 className="text-xl font-bold tracking-tight">My Location</h1>
-      <Button
-        onClick={handleRefresh}
-        disabled={weatherQuery.isFetching || forecastQuery.isFetching}
-        variant={"outline"}
-        size={"icon"}
-      >
-        <RefreshCcw
-          className={`h-4 w-4 ${weatherQuery.isFetching ? "animate-spin" : ""}`}
-        />
-      </Button>
-    </div>
-    <div className=" grid gap-6">
-       <div className="grid grid-cols-2 gap-2">
-        <CurrentWeather data={weatherQuery.data}
-        locationName={locationName}/>
-       
+      <div className="flex items-center justify-between">
+        <h1 className="text-xl font-bold tracking-tight">My Location</h1>
+        <Button
+          onClick={handleRefresh}
+          disabled={weatherQuery.isFetching || forecastQuery.isFetching}
+          variant={"outline"}
+          size={"icon"}
+        >
+          <RefreshCcw
+            className={`h-4 w-4 ${
+              weatherQuery.isFetching ? "animate-spin" : ""
+            }`}
+          />
+        </Button>
+      </div>
+      <div className=" grid gap-6">
+        <div className="grid grid-cols-2 gap-2">
+          <CurrentWeather
+            data={weatherQuery.data}
+            locationName={locationName}
+          />
+
           <HourlyTemperature data={forecastQuery.data} />
         </div>
-      <div>
-       <WeatherDetails data={weatherQuery.data}/>
-       <WeatherForecast data={forecastQuery.data}/>
+        <div className="grid grid-cols-2 gap-2">
+          <WeatherDetails data={weatherQuery.data} />
+          <WeatherForecast data={forecastQuery.data} />
+        </div>
       </div>
     </div>
-    </div>
   );
-
 };
 
 export default WeatherDashboard;
